@@ -1,1 +1,87 @@
-<!-- Add theory content here -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experiment 3: Introduction to Neural Networks and Perceptron Examples</title>
+    <style>
+        /* Add your CSS styles here */
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            padding: 20px;
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
+        p {
+            color: #666;
+        }
+        .section {
+            margin-bottom: 40px;
+        }
+        .section-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .sub-section {
+            margin-left: 20px;
+        }
+        .image-container {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Experiment 3: Introduction to Neural Networks and Perceptron Examples</h1>
+    </header>
+
+    <div class="section">
+        <h2 class="section-title">Theory</h2>
+        <p>The Perceptron is a fundamental building block of neural networks. It simulates the behavior of a single neuron and can be used for binary classification tasks.</p>
+
+        <div class="sub-section">
+            <h3>Perceptron Structure:</h3>
+            <p>The Perceptron has continuous valued inputs and its activation is determined by the equation <code>a = w^Tu + theta</code>. Its output function is defined as <code>f(a) = (+1, for a >= 0), (-1, for 0 < a)</code>.</p>
+            <div class="image-container">
+                <img src="perceptron_structure.png" alt="Perceptron Structure" width="400">
+                <p>Fig. 1: Perceptron Structure</p>
+            </div>
+        </div>
+
+        <div class="sub-section">
+            <h3>Decision Rule:</h3>
+            <p>The Perceptron forms decision regions separated by a hyperplane. It decides whether an input vector belongs to one of two classes based on its output value.</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2 class="section-title">Procedure</h2>
+        <ol>
+            <li>Left click on the board to plot blue color samples.</li>
+            <li>Right click on the board to plot red color samples.</li>
+            <li>Adjust Learning rate to the desired level.</li>
+            <li>Input the number of iterations to be performed.</li>
+            <li>Click on the Learn Button to plot the Perceptron line dividing the Blue and Red Samples.</li>
+            <li>Click on the Clear Button to perform the experiment again.</li>
+        </ol>
+    </div>
+
+    <div class="section">
+        <h2 class="section-title">Conclusion</h2>
+        <p>The Perceptron simulator is used for the classification of blue and red data points in the given dataset. The effect of learning rate and the number of iterations is observed in the simulator.</p>
+    </div>
+
+    <div class="section">
+        <h2 class="section-title">References</h2>
+        <ul>
+            <li>Rosenblatt, Frank (1957), The Perceptron--a perceiving and recognizing automaton. Report 85-460-1, Cornell Aeronautical Laboratory.</li>
+            <li>W. Krauth and M. Mezard. Learning algorithms with optimal stability in neural networks. J. of Physics A: Math. Gen. 20: L745-L752 (1987)</li>
+            <li>J.K. Anlauf and M. Biehl. The AdaTron: an Adaptive Perceptron algorithm. Europhysics Letters 10: 687-692 (1989)</li>
+        </ul>
+    </div>
+</body>
+</html>

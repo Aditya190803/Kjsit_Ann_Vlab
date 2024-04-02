@@ -1,1 +1,124 @@
-<!-- Add theory content here -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experiment 4: Implement OR and AND Logic Functions using Perceptron Neural Network</title>
+    <style>
+        /* Add your CSS styles here */
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            padding: 20px;
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
+        p {
+            color: #666;
+        }
+        .section {
+            margin-bottom: 40px;
+        }
+        .section-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .sub-section {
+            margin-left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Experiment 4: Implement OR and AND Logic Functions using Perceptron Neural Network</h1>
+    </header>
+
+    <div class="section">
+        <h2 class="section-title">Theory</h2>
+        <p>The perceptron is a fundamental building block of neural networks used to solve binary classification problems. It consists of input values, weights and bias, net sum, and an activation function.</p>
+
+        <div class="sub-section">
+            <h3>Perceptron Structure:</h3>
+            <p>The perceptron takes input vectors, multiplies them by corresponding weight vectors, adds bias, and passes the result through an activation function.</p>
+        </div>
+
+        <div class="sub-section">
+            <h3>Perceptron Algorithm:</h3>
+            <p>The Perceptron Algorithm outputs binary values (0 or 1) and can only classify linearly separable vector sets.</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2 class="section-title">Program</h2>
+        <pre><code>from numpy import array, random, dot
+from random import choice
+from pylab import ylim, plot
+from matplotlib import pyplot as plt
+
+step_function = lambda x: 0 if x < 0 else 1
+
+training_dataset = [
+    (array([0,0,1]), 0),
+    (array([0,1,1]), 1),
+    (array([1,0,1]), 1),
+    (array([1,1,1]), 1),
+]
+
+weights = random.rand(3)
+error = []
+learning_rate = 0.2
+n = 100
+
+for j in range(n):
+    x, expected = choice(training_dataset)
+    result = dot(weights, x)
+    err = expected - step_function(result)
+    error.append(err)
+    weights += learning_rate * err * x
+
+for x, _ in training_dataset:
+    result = dot(x, weights)
+    print('{}: {} -&gt; {}'.format(x[:2], result, step_function(result)))
+
+ylim([-1,1])
+plot(error)
+plt.show()</code></pre>
+    </div>
+
+    <div class="section">
+        <h2 class="section-title">Student Instructions</h2>
+        <ol>
+            <li>Execute the above program for the OR logic function.</li>
+            <li>Make changes to the program and implement the AND logic function. Plot the error for that function.</li>
+            <li>Attach the output for assessment with the experiment write-up.</li>
+        </ol>
+    </div>
+
+    <div class="section">
+        <h2 class="section-title">Conclusion</h2>
+        <p>The perceptron algorithm, implemented using Python, is the simplest form of artificial neural networks. It can create a single Neuron model to solve binary classification problems by taking input vectors, multiplying them by corresponding weight vectors, adding bias, and passing the result through an activation function.</p>
+    </div>
+
+    <div class="section">
+        <h2 class="section-title">Text/Reference Books</h2>
+        <ul>
+            <li>“Neural Network a Comprehensive Foundation”  By Simon Haykin</li>
+            <li>“Introduction to Soft Computing” By Dr. S. N. Shivnandam, Mrs. S. N. Deepa</li>
+            <li>“Neural Network: A classroom Approach”  By Satish Kumar</li>
+            <li>“Neural Network, Fuzzy Logic and Genetic Algorithms” By Rajshekharan S, Vijayalakshmi Pai</li>
+            <li>“Neural Network Design” by Hagan Demuth, Beale“Neural Network for Pattern Recognition”, Christopher M. Bishop</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2 class="section-title">Exercises</h2>
+        <ol>
+            <li>Implement the OR function using the MP neuron (take binary data).</li>
+            <li>Implement the AND function using the MP neuron (take binary data).</li>
+        </ol>
+    </div>
+</body>
+</html>

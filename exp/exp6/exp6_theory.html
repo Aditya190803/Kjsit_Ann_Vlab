@@ -1,1 +1,200 @@
-<!-- Add theory content here -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experiment No. 6: Back Propagation Neural Network Algorithm</title>
+    <style>
+        /* CSS styles */
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            padding: 20px;
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
+        p {
+            color: #666;
+        }
+        .section {
+            margin-bottom: 40px;
+        }
+        .section-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .sub-section {
+            margin-left: 20px;
+        }
+        code {
+            background-color: #f4f4f4;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-family: Consolas, monospace;
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-radius: 6px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Experiment No. 6: Back Propagation Neural Network Algorithm</h1>
+    </header>
+    <section class="section">
+        <h2 class="section-title">AIM:</h2>
+        <p>Implement Back Propagation Neural Network Algorithm for the given dataset using Python.</p>
+    </section>
+    <section class="section">
+        <h2 class="section-title">LABORATORY OUTCOMES:</h2>
+        <ul>
+            <li>Students will be able to implement Back Propagation Network algorithm for the given dataset.</li>
+            <li>Students will be able to plot the mean square error and accuracy of Back Propagation Network.</li>
+        </ul>
+    </section>
+    <section class="section">
+        <h2 class="section-title">THEORY:</h2>
+        <div class="sub-section">
+            <p>Backpropagation neural network is used to improve the accuracy of neural network and make them capable of self-learning. Backpropagation means “backward propagation of errors”. Here error is spread into the reverse direction in order to achieve better performance. Backpropagation is an algorithm for supervised learning of artificial neural networks that uses the gradient descent method to minimize the cost function. It searches for optimal weights that optimize the mean-squared distance between the predicted and actual labels.</p>
+        </div>
+        <div class="sub-section">
+            <h3>How BPN Works?</h3>
+            <p>BPN learns in an iterative manner. In each iteration, it compares training examples with the actual target label. Target label can be a class label or continuous value. The backpropagation algorithm works in the following three steps:</p>
+            <ol>
+                <li><strong>Initialize Network:</strong> BPN randomly initializes the weights.</li>
+                <li><strong>Forward Propagate:</strong> After initialization, we will propagate into the forward direction. In this phase, we will compute the output and calculate the error from the target output.</li>
+                <li><strong>Back Propagate Error:</strong> For each observation, weights are modified in order to reduce the error in a technique called the delta rule or gradient descent. It modifies weights in a “backward” direction to all the hidden layers.</li>
+            </ol>
+        </div>
+        <div class="sub-section">
+            <h3>Implementation Steps of BPN using Python:</h3>
+            <ol>
+                <li><strong>Import Libraries:</strong> Let's import the required modules and libraries such as numpy, pandas, scikit-learn, and matplotlib.</li>
+                <li><strong>Load Dataset:</strong> Let’s first load the Iris dataset using <code>load_iris()</code> function of scikit-learn library and separate them into features and target labels.</li>
+                <li><strong>Prepare Dataset:</strong> Create dummy variables for class labels using <code>get_dummies()</code> function.</li>
+                <li><strong>Split Train and Test set:</strong> To understand model performance, dividing the dataset into a training set and a test set is a good strategy. Let’s split dataset by using function <code>train_test_split()</code>. You need to pass basically 3 parameters features, target, and test_set size. Additionally, you can use <code>random_state</code> in order to get the same kind of train and test set.</li>
+                <li><strong>Initialise Hyperparameters and Weights:</strong> Let's initialize the hyperparameters such as learning rate, iterations, input size, number of hidden layers, and number of output layers. Then, initialize the weights for hidden and output layers with random values.</li>
+                <li><strong>Helper Function:</strong> Let's create helper functions such as <code>sigmoid</code>, <code>mean_squared_error</code>, and <code>accuracy</code>. We will create a for loop for given number of iterations that execute the three steps (feedforward propagation, error calculation, and backpropagation phase) and update the weights in each iteration.</li>
+                <li><strong>Plot MSE and Accuracy:</strong> Let's plot mean squared error in each iteration using pandas <code>plot()</code> function.</li>
+                <li><strong>Predict for Test Data and Evaluate the Performance:</strong> Let’s make prediction for the test data and assess the performance of Backpropagation neural network.</li>
+            </ol>
+        </div>
+    </section>
+    <section class="section">
+        <h2 class="section-title">PROGRAM:</h2>
+        <pre><code># Import libraries
+import numpy as np
+import pandas as pd
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+import matplotlib.pyplot as plt
+
+# Loading dataset
+data = load_iris()
+X = data.data
+y = data.target
+
+# Split dataset into training and test sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=20, random_state=4)
+
+# Hyperparameters
+learning_rate = 0.1
+iterations = 5000
+N = y_train.size
+input_size = 4
+hidden_size = 2
+output_size = 3
+
+np.random.seed(10)
+W1 = np.random.normal(scale=0.5, size=(input_size, hidden_size))
+W2 = np.random.normal(scale=0.5, size=(hidden_size, output_size))
+
+# Helper functions
+def sigmoid(x):
+    return 1 / (1 + np.exp(-x))
+def mean_squared_error(y_pred, y_true):
+    # One-hot encode y_true (i.e., convert [0, 1, 2] into [[1, 0, 0], [0, 1, 0], [0, 0, 1]])
+    y_true_one_hot = np.eye(output_size)[y_true]
+    # Reshape y_true_one_hot to match y_pred shape
+    y_true_reshaped = y_true_one_hot.reshape(y_pred.shape)
+    # Compute the mean squared error between y_pred and y_true_reshaped
+    error = ((y_pred - y_true_reshaped)**2).sum() / (2*y_pred.size)
+    return error
+def accuracy(y_pred, y_true):
+    acc = y_pred.argmax(axis=1) == y_true.argmax(axis=1)
+    return acc.mean()
+results = pd.DataFrame(columns=["mse", "accuracy"])
+
+# Training loop
+for itr in range(iterations):
+    # Feedforward propagation
+    Z1 = np.dot(X_train, W1)
+    A1 = sigmoid(Z1)
+    Z2 = np.dot(A1, W2)
+    A2 = sigmoid(Z2)
+
+    # Calculate error
+    mse = mean_squared_error(A2, y_train)
+    acc = accuracy(np.eye(output_size)[y_train], A2)
+    new_row = pd.DataFrame({"mse": [mse], "accuracy": [acc]})
+    results = pd.concat([results, new_row], ignore_index=True)
+
+    # Backpropagation
+    E1 = A2 - np.eye(output_size)[y_train]
+    dW1 = E1 * A2 * (1 - A2)
+    E2 = np.dot(dW1, W2.T)
+    dW2 = E2 * A1 * (1 - A1)
+
+    # Update weights
+    W2_update = np.dot(A1.T, dW1) / N
+    W1_update = np.dot(X_train.T, dW2) / N
+    W2 = W2 - learning_rate * W2_update
+    W1 = W1 - learning_rate * W1_update
+
+# Visualizing the results
+results.mse.plot(title="Mean Squared Error")
+plt.show()
+results.accuracy.plot(title="Accuracy")
+plt.show()
+
+# Test the model
+Z1 = np.dot(X_test, W1)
+A1 = sigmoid(Z1)
+Z2 = np.dot(A1, W2)
+A2 = sigmoid(Z2)
+test_acc = accuracy(np.eye(output_size)[y_test], A2)
+print("Test accuracy: {}".format(test_acc))
+</code></pre>
+    </section>
+    <section class="section">
+        <h2 class="section-title">CONCLUSION:</h2>
+        <p>Implementation of BPN for Iris dataset is carried out here. BPN is a method to optimize neural networks by propagating the error or loss into a backward direction. It finds loss for each node and updates its weights accordingly in order to minimize the loss using gradient descent.</p>
+    </section>
+    <section class="section">
+        <h2 class="section-title">TEXT/REFERENCE BOOKS:</h2>
+        <ul>
+            <li>“Neural Network a Comprehensive Foundation” By Simon Haykin</li>
+            <li>“Introduction to Soft Computing” By Dr. S. N. Shivnandam, Mrs. S. N. Deepa</li>
+            <li>“Neural Network: A classroom Approach” By Satish Kumar</li>
+            <li>“Neural Network, Fuzzy Logic and Genetic Algorithms” By Rajshekharan S, Vijayalakshmi Pai</li>
+            <li>“Neural Network Design” by Hagan Demuth, Beale</li>
+            <li>“Neural Network for Pattern Recognition”, Christopher M. Bishop</li>
+        </ul>
+    </section>
+    <section class="section">
+        <h2 class="section-title">WEB ADDRESS (URLS):</h2>
+        <ul>
+            <li><a href="https://machinelearninggeek.com/backpropagation-neural-network-using-python/">https://machinelearninggeek.com/backpropagation-neural-network-using-python/</a></li>
+            <li><a href="https://www.askpython.com/python/examples/backpropagation-in-python">https://www.askpython.com/python/examples/backpropagation-in-python</a></li>
+            <li><a href="https://www.sebastian-mantey.com/theory-blog/basics-of-deep-learning-p13-implementing-the-backpropagation-algorithm-with-numpy">https://www.sebastian-mantey.com/theory-blog/basics-of-deep-learning-p13-implementing-the-backpropagation-algorithm-with-numpy</a></li>
+        </ul>
+    </section>
+</body>
+</html>
