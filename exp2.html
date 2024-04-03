@@ -1,0 +1,222 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>EXPERIMENT 2 | KJSIT - AI&DS</title>
+
+    <meta property="og:title" content="KJSIT AI&DS"/>
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content="official website of department of artificial intelligence and data science at K J Somaiya institute of technology" />
+    <meta property="og:url" content="http://department.kjsieit.in/aids/home.php" />
+    <meta property="og:image" content="https://kjsit.somaiya.edu.in/assets/kjsieit/images/Logo/kjsieit-logo.svg" />
+
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <link rel="stylesheet" href="css/swiper-bundle.min.css">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <script src="script.js" defer></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+</head>
+
+    <body>
+            <!-- Loader -->
+        <div class="loader">
+            <div class="loader-spinner"></div>
+        </div>
+
+        <!-- container for sub-header -->
+        <div id="header-container"></div>  
+
+        <div class="body-text1">
+            <div class="title">Experiment 2</div>
+        </div>
+        <div class="arrow">
+            <a href="#" title="Back to Top"><span class="fas fa-angle-up"></span></a>
+        </div>
+
+        <section class="sub-About" style="background:linear-gradient(to bottom right,#ffdbdb,#ffc6c6); width:95%; border-radius: 15px;margin: auto;">
+            <h1> Implementation of Activation Functions in Artificial Neural Network</h1>
+    
+
+
+            <h2>Theory</h2>
+            <p>The activation function is used to calculate the output response of a neuron. Different activation functions have different properties:</p>
+    
+           
+                <h2>1. Binary Step Activation Function:</h2>
+                <p>Binary step function is a threshold-based activation function which returns '0' if the input is less than zero, and '1' otherwise.</p>
+                <pre><code>
+                    import numpy as np 
+                    import matplotlib.pyplot as plt 
+                    
+                    # Binary Step Activation Function 
+                    def binaryStep(x): 
+                        return np.heaviside(x, 1) 
+                    
+                    x = np.linspace(-10, 10) 
+                    plt.plot(x, binaryStep(x)) 
+                    plt.axis('tight') 
+                    plt.title('Activation Function: Binary Step') 
+                    plt.show() 
+    </code></pre>
+           
+    
+           
+                <h2>2. Linear Activation Function:</h2>
+                <p>The Linear Activation Function returns the input as it is. It is represented by f(x) = x.</p>
+                <pre><code>
+                    import numpy as np 
+                    import matplotlib.pyplot as plt 
+                    
+                    # Linear Activation Function 
+                    def linear(x): 
+                        return x 
+                    
+                    x = np.linspace(-10, 10) 
+                    plt.plot(x, linear(x)) 
+                    plt.axis('tight') 
+                    plt.title('Activation Function: Linear') 
+                    plt.show() 
+    </code></pre>
+           
+    
+           
+                <h2>3. Sigmoid Activation Function:</h2>
+                <p>The Sigmoid Activation Function returns values between 0 and 1, suitable for binary classification problems.</p>
+                <pre><code>
+                    import numpy as np 
+                    import matplotlib.pyplot as plt 
+                    
+                    # Sigmoid Activation Function 
+                    def sigmoid(x): 
+                        return 1 / (1 + np.exp(-x)) 
+                    
+                    x = np.linspace(-10, 10) 
+                    plt.plot(x, sigmoid(x)) 
+                    plt.axis('tight') 
+                    plt.title('Activation Function: Sigmoid') 
+                    plt.show() 
+    </code></pre>
+           
+    
+           
+                <h2>4. Bipolar Sigmoid Activation Function:</h2>
+                <p>The Bipolar Sigmoid Activation Function returns values between -1 and 1.</p>
+                <pre><code>
+                    import numpy as np 
+                    import matplotlib.pyplot as plt 
+                    
+                    # Bipolar Sigmoid Activation Function 
+                    def bipolarSigmoid(x): 
+                        return -1 + 2 / (1 + np.exp(-x)) 
+                    
+                    x = np.linspace(-10, 10) 
+                    plt.plot(x, bipolarSigmoid(x)) 
+                    plt.axis('tight') 
+                    plt.title('Activation Function: Bipolar Sigmoid') 
+                    plt.show() 
+                </code></pre>
+           
+    
+           
+                <h2>5. Hyperbolic Tangent (tanh) Activation Function:</h2>
+                <p>The Hyperbolic Tangent Activation Function returns values between -1 and 1, similar to the bipolar sigmoid but with steeper gradients.</p>
+                <pre><code>
+                    import numpy as np 
+                    import matplotlib.pyplot as plt 
+                    
+                    # Hyperbolic Tangent (tanh) Activation Function 
+                    def tanh(x): 
+                        return np.tanh(x) 
+                    
+                    x = np.linspace(-10, 10) 
+                    plt.plot(x, tanh(x)) 
+                    plt.axis('tight') 
+                    plt.title('Activation Function: Hyperbolic Tangent (tanh)') 
+                    plt.show() 
+                </code></pre>
+           
+    
+           
+                <h2>6. ReLU (Rectified Linear Unit) Activation Function:</h2>
+                <p>The ReLU Activation Function returns the input if it is positive, and zero otherwise.</p>
+                <pre><code>
+                    import numpy as np 
+                    import matplotlib.pyplot as plt 
+                    
+                    # ReLU (Rectified Linear Unit) Activation Function 
+                    def ReLU(x): 
+                        return np.maximum(0, x) 
+                    
+                    x = np.linspace(-10, 10) 
+                    plt.plot(x, ReLU(x)) 
+                    plt.axis('tight') 
+                    plt.title('Activation Function: ReLU (Rectified Linear Unit)') 
+                    plt.show() 
+    </code></pre>
+           
+    
+           
+                <h2>7. Leaky ReLU Activation Function:</h2>
+                <p>The Leaky ReLU Activation Function is similar to ReLU, but allows a small gradient when the input is negative.</p>
+                <pre><code>
+                    import numpy as np 
+                    import matplotlib.pyplot as plt 
+    
+                    # Leaky ReLU Activation Function 
+                    def leakyReLU(x): 
+                        return np.maximum(0.01 * x, x)  # Using a small slope (0.01) for negative input
+    
+                    x = np.linspace(-10, 10) 
+                    plt.plot(x, leakyReLU(x)) 
+                    plt.axis('tight') 
+                    plt.title('Activation Function: Leaky ReLU') 
+                    plt.show() 
+                </code></pre>
+           
+    
+           
+                <h2>8. Softmax Activation Function:</h2>
+                <p>The Softmax Activation Function is used in the output layer of neural network models for multi-class classification problems. It returns a probability distribution over multiple classes.</p>
+                <pre><code>
+                    import numpy as np 
+                    import matplotlib.pyplot as plt 
+    
+                    # Softmax Activation Function 
+                    def softmax(x): 
+                        exp_vals = np.exp(x - np.max(x, axis=0))  # Subtracting the maximum value for numerical stability
+                        return exp_vals / np.sum(exp_vals, axis=0)
+    
+                    x = np.linspace(-10, 10) 
+                    plt.plot(x, softmax(x)) 
+                    plt.axis('tight') 
+                    plt.title('Activation Function: Softmax') 
+                    plt.show() 
+                </code></pre>
+           
+        <div>
+            <h2>Conclusion</h2>
+            <p>The choice of activation function has a significant impact on the performance and behavior of neural networks. Each activation function has its own advantages and disadvantages, and the selection should be based on the specific requirements of the problem at hand.</p>
+       
+    
+       
+            <p><strong> Reference:</strong> Neural Network: A Comprehensive Foundation by Simon Haykin</p>
+       
+        </section>
+
+        <br>
+        
+
+
+        
+        <!--load footer here-->
+        <div id="footer-container"></div>
+        
+    </body>
+</html>
