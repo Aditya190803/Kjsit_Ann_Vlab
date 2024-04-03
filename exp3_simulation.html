@@ -1,1 +1,158 @@
-<!-- Add simulation content here -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perceptron Simulation | KJSIT - AI&DS</title>
+    <style>
+        /* CSS styles */
+        canvas {
+            border: 1px solid black;
+            cursor: crosshair;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Perceptron Simulation</h1>
+    </header>
+
+    <canvas id="canvas" width="800" height="600"></canvas>
+    <button id="learnButton" disabled>Learn</button>
+    <button id="clearButton">Clear</button>
+    <div>
+        <label for="learningRate">Learning Rate:</label>
+        <input type="range" id="learningRate" name="learningRate" min="0" max="1" step="0.1" value="0.1">
+        <span id="lrValue">0.1</span>
+    </div>
+    <div>
+        <label for="iterations">Iterations:</label>
+        <input type="number" id="iterations" name="iterations" min="1" value="10">
+    </div>
+
+    <footer>
+        <p>&copy; 2024 KJSIT - AI&DS</p>
+    </footer>
+
+    <script>
+        // JavaScript code
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+
+        // Initialize perceptron parameters
+        let weights = [0, 0];
+        let bias = 0;
+        let learningRate = parseFloat(document.getElementById('learningRate').value);
+        const iterations = parseInt(document.getElementById('iterations').value);
+        let points = [];
+
+        // Function to calculate the output of the perceptron
+        function perceptronOutput(x, y) {
+            const sum = x * weights[0] + y * weights[1] + bias;
+            return sum >= 0 ? 1 : -1;
+        }
+
+        // Function to learn from a single point
+        function learnFromPoint(x, y, label) {
+            const guess = perceptronOutput(x, y);
+            const error = label - guess;
+            weights[0] += error * x * learningRate;
+            weights[1] += error * y * learningRate;
+            bias += error * learningRate;
+        }
+
+        // Function to train the perceptron
+        function trainPerceptron() {
+            for (let i = 0; i < iterations; i++) {
+                for (const point of points) {
+                    const x = point[0];
+                    const y = point[1];
+                    const label = point[2];
+                    learnFromPoint(x, y, label);
+                }
+            }
+            drawPerceptron();
+        }
+
+        // Function to draw the perceptron's decision boundary
+        function drawPerceptron() {
+            const xMin = 0;
+            const yMin = (-bias - weights[0] * xMin) / weights[1];
+            const xMax = canvas.width;
+            const yMax = (-bias - weights[0] * xMax) / weights[1];
+            
+            let startX, startY, endX, endY;
+
+            // Find intersection points with canvas borders
+            if (yMin >= 0 && yMin <= canvas.height) {
+                startX = xMin;
+                startY = yMin;
+            } else {
+                startY = yMin < 0 ? 0 : canvas.height;
+                startX = (-bias - weights[1] * startY) / weights[0];
+            }
+
+            if (yMax >= 0 && yMax <= canvas.height) {
+                endX = xMax;
+                endY = yMax;
+            } else {
+                endY = yMax < 0 ? 0 : canvas.height;
+                endX = (-bias - weights[1] * endY) / weights[0];
+            }
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.beginPath();
+            ctx.moveTo(startX, startY);
+            ctx.lineTo(endX, endY);
+            ctx.stroke();
+
+            // Redraw points
+            for (const point of points) {
+                const x = point[0];
+                const y = point[1];
+                const label = point[2];
+                ctx.fillStyle = label === 1 ? 'blue' : 'red';
+                ctx.beginPath();
+                ctx.arc(x, y, 5, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+
+
+        // Function to clear the canvas
+        function clearCanvas() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            points = [];
+            document.getElementById('learnButton').disabled = true;
+        }
+
+        // Event listener for Learn button
+        document.getElementById('learnButton').addEventListener('click', trainPerceptron);
+
+        // Event listener for Clear button
+        document.getElementById('clearButton').addEventListener('click', clearCanvas);
+
+        // Event listener for canvas clicks
+        canvas.addEventListener('contextmenu', function(event) {
+            event.preventDefault(); // Prevent default context menu
+        });
+
+        canvas.addEventListener('mousedown', function(event) {
+            const rect = canvas.getBoundingClientRect();
+            const x = event.clientX - rect.left;
+            const y = event.clientY - rect.top;
+            const label = event.button === 0 ? 1 : -1; // Left click: 1, Right click: -1
+            points.push([x, y, label]);
+            drawPerceptron();
+            document.getElementById('learnButton').disabled = false;
+        });
+
+        // Event listener for learning rate slider
+        document.getElementById('learningRate').addEventListener('input', function(event) {
+            learningRate = parseFloat(event.target.value);
+            document.getElementById('lrValue').textContent = event.target.value;
+        });
+    </script>
+</body>
+</html>
