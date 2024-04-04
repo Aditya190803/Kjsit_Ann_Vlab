@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,17 +23,33 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     
 </head>
+
 <body>
-    <header>
-        <h1>Experiment 3: Introduction to Neural Networks and Perceptron Examples</h1>
-    </header>
+    <!-- Loader -->
+<div class="loader">
+    <div class="loader-spinner"></div>
+</div>
+
+<!-- container for sub-header -->
+<div id="header-container"></div>  
+
+<div class="body-text1">
+    <div class="title">Experiment 1</div>
+</div>
+<div class="arrow">
+    <a href="#" title="Back to Top"><span class="fas fa-angle-up"></span></a>
+</div>
+
+<section class="sub-About" style="background:linear-gradient(to bottom right,#ffdbdb,#ffc6c6); width:95%; border-radius: 15px;margin: auto;">
+    <h1>Experiment 3: Introduction to Neural Networks and Perceptron Examples</h1>
+
 
     <div >
         <h2 >Theory</h2>
         <p>The Perceptron is a fundamental building block of neural networks. It simulates the behavior of a single neuron and can be used for binary classification tasks.</p>
 
         <div >
-            <h3>Perceptron Structure:</h3>
+            <h2>Perceptron Structure:</h2>
             <p>The Perceptron has continuous valued inputs and its activation is determined by the equation <code>a = w^Tu + theta</code>. Its output function is defined as <code>f(a) = (+1, for a >= 0), (-1, for 0 < a)</code>.</p>
             <div >
                 <img src="images/perceptron_structure.png" alt="Perceptron Structure" width="400">
@@ -41,7 +58,7 @@
         </div>
 
         <div >
-            <h3>Decision Rule:</h3>
+            <h2>Decision Rule:</h2>
             <p>The Perceptron forms decision regions separated by a hyperplane. It decides whether an input vector belongs to one of two classes based on its output value.</p>
         </div>
     </div>
@@ -71,5 +88,15 @@
             <li>J.K. Anlauf and M. Biehl. The AdaTron: an Adaptive Perceptron algorithm. Europhysics Letters 10: 687-692 (1989)</li>
         </ul>
     </div>
+</section>
+
+<br>
+
+
+
+
+<!--load footer here-->
+<div id="footer-container"></div>
+
 </body>
 </html>

@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +9,7 @@
 
     <meta property="og:title" content="KJSIT AI&DS"/>
     <meta property="og:type" content="website" />
-    <meta property="og:description" content="Virtual Lab for Artificial Nueral Network." />
+    <meta property="og:description" content="official website of department of artificial intelligence and data science at K J Somaiya institute of technology" />
     <meta property="og:url" content="http://department.kjsieit.in/aids/home.php" />
     <meta property="og:image" content="https://kjsit.somaiya.edu.in/assets/kjsieit/images/Logo/kjsieit-logo.svg" />
 
@@ -20,107 +21,153 @@
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <script src="script.js" defer></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
 </head>
-<body>
-    <header>
-        <h1>Experiment No. 7: Support Vector Machine (SVM) Algorithm</h1>
-    </header>
-    <section class="section">
-        <h2 class="section-title">AIM:</h2>
-        <p>Implement Support Vector Machine (SVM) Algorithm for the given dataset using Python.</p>
-    </section>
-    <section class="section">
-        <h2 class="section-title">LABORATORY OUTCOMES:</h2>
+
+    <!-- Loader -->
+    <div class="loader">
+        <div class="loader-spinner"></div>
+    </div>
+    <!-- container for sub-header -->
+    <div id="header-container"></div>  
+    
+    <div class="body-text1">
+        <div class="title">Experiment 7</div>
+    </div>
+    <div class="arrow">
+        <a href="#" title="Back to Top"><span class="fas fa-angle-up"></span></a>
+    </div>
+    
+    <section class="sub-About" style="background:linear-gradient(to bottom right,#ffdbdb,#ffc6c6); width:95%; border-radius: 15px;margin: auto;">
+        <h1>Back Propagation Neural Network Algorithm</h1>
+        
+        
+        <h2>AIM:</h2>
+        <p>Implement Back Propagation Neural Network Algorithm for the given dataset using Python.</p>
+    
+        <h2>LABORATORY OUTCOMES:</h2>
         <ul>
-            <li>Students will be able to implement Support Vector Machine algorithm for the given dataset.</li>
-            <li>Students will be able to find the optimal line or best decision boundary to separate points into different spaces.</li>
+            <li>Students will be able to implement Back Propagation Network algorithm for the given dataset.</li>
+            <li>Students will be able to plot the mean square error and accuracy of Back Propagation Network.</li>
         </ul>
-    </section>
-    <section class="section">
-        <h2 class="section-title">THEORY:</h2>
-        <div class="sub-section">
-            <p>SVM was developed in the 1960s and refined in the 1990s. It becomes very popular in the machine learning field because SVM is very powerful compared to other algorithms. SVM (Support Vector Machine) is a supervised machine learning algorithm. That’s why training data is available to train the model. SVM uses a classification algorithm to classify a two-group problem. SVM focus on decision boundary and support vectors.</p>
+    
+        <h2>THEORY:</h2>
+        <div>
+            <p>Backpropagation neural network is used to improve the accuracy of neural network and make them capable of self-learning. Backpropagation means “backward propagation of errors”. Here error is spread into the reverse direction in order to achieve better performance. Backpropagation is an algorithm for supervised learning of artificial neural networks that uses the gradient descent method to minimize the cost function. It searches for optimal weights that optimize the mean-squared distance between the predicted and actual labels.</p>
         </div>
-        <div class="sub-section">
-            <h3>How SVM Works?</h3>
-            <p>Here, we have two points in two-dimensional space, we have two columns x1 and x2. We have some observations such as red and green, which are already classified. This is linearly separable data. To classify new points, we need to create a boundary between two categories, and when in the future we will add new points and we want to classify them, then we know where they belong. Either in a Green Area or Red Area. One way to separate is to draw a vertical line between two areas, so anything on the right is Red and anything on the left is Green. Something like that. However, there is one more way, draw a horizontal line or diagonal line. You can create multiple diagonal lines, which achieve similar results to separate our points into two classes. But our main task is to find the optimal line or best decision boundary. And for this SVM is used. SVM finds the best decision boundary, which helps us to separate points into different spaces.</p>
+        <div>
+            <h2>How BPN Works?</h2>
+            <p>BPN learns in an iterative manner. In each iteration, it compares training examples with the actual target label. Target label can be a class label or continuous value. The backpropagation algorithm works in the following three steps:</p>
+            <ol>
+                <li><strong>Initialize Network:</strong> BPN randomly initializes the weights.</li>
+                <li><strong>Forward Propagate:</strong> After initialization, we will propagate into the forward direction. In this phase, we will compute the output and calculate the error from the target output.</li>
+                <li><strong>Back Propagate Error:</strong> For each observation, weights are modified in order to reduce the error in a technique called the delta rule or gradient descent. It modifies weights in a “backward” direction to all the hidden layers.</li>
+            </ol>
         </div>
-        <div class="sub-section">
-            <p>SVM finds the best or optimal line through the maximum margin, which means it has max distance and equidistance from both classes or spaces. The sum of these two classes has to be maximized to make this line the maximum margin.</p>
+        <div>
+            <h2>Implementation Steps of BPN using Python:</h2>
+            <ol>
+                <li><strong>Import Libraries:</strong> Let's import the required modules and libraries such as numpy, pandas, scikit-learn, and matplotlib.</li>
+                <li><strong>Load Dataset:</strong> Let’s first load the Iris dataset using <code>load_iris()</code> function of scikit-learn library and separate them into features and target labels.</li>
+                <li><strong>Prepare Dataset:</strong> Create dummy variables for class labels using <code>get_dummies()</code> function.</li>
+                <li><strong>Split Train and Test set:</strong> To understand model performance, dividing the dataset into a training set and a test set is a good strategy. Let’s split dataset by using function <code>train_test_split()</code>. You need to pass basically 3 parameters features, target, and test_set size. Additionally, you can use <code>random_state</code> in order to get the same kind of train and test set.</li>
+                <li><strong>Initialise Hyperparameters and Weights:</strong> Let's initialize the hyperparameters such as learning rate, iterations, input size, number of hidden layers, and number of output layers. Then, initialize the weights for hidden and output layers with random values.</li>
+                <li><strong>Helper Function:</strong> Let's create helper functions such as <code>sigmoid</code>, <code>mean_squared_error</code>, and <code>accuracy</code>. We will create a for loop for given number of iterations that execute the three steps (feedforward propagation, error calculation, and backpropagation phase) and update the weights in each iteration.</li>
+                <li><strong>Plot MSE and Accuracy:</strong> Let's plot mean squared error in each iteration using pandas <code>plot()</code> function.</li>
+                <li><strong>Predict for Test Data and Evaluate the Performance:</strong> Let’s make prediction for the test data and assess the performance of Backpropagation neural network.</li>
+            </ol>
         </div>
-        <div class="sub-section">
-            <p>These, two vectors are support vectors. In SVM, only support vectors are contributing. That’s why these points or vectors are known as support vectors. Due to support vectors, this algorithm is called a Support Vector Algorithm(SVM). In the picture, the line in the middle is a maximum margin hyperplane or classifier. In a two-dimensional plane, it looks like a line, but in a multi-dimensional, it is a hyperplane.</p>
-        </div>
-    </section>
-    <section class="section">
-        <h2 class="section-title">PROGRAM:</h2>
-        <pre><code># Import libraries
-import numpy as np
-import matplotlib.pyplot as plt
-import pandas as pd
-
-# Load the Dataset
-dataset = pd.read_csv('Social_Network_Ads.csv')
-
-# Split Dataset into X and Y
-X = dataset.iloc[:, [2, 3]].values
-y = dataset.iloc[:, 4].values
-
-# Split the X and Y Dataset into the Training set and Test set
-from sklearn.model_selection import train_test_split
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=0)
-
-# Perform Feature Scaling
-from sklearn.preprocessing import StandardScaler
-sc = StandardScaler()
-X_train = sc.fit_transform(X_train)
-X_test = sc.transform(X_test)
-
-# Fit SVM to the Training set
-from sklearn.svm import SVC
-classifier = SVC(kernel='rbf', random_state=0)
-classifier.fit(X_train, y_train)
-
-# Predict the Test Set Results
-y_pred = classifier.predict(X_test)
-
-# Make the Confusion Matrix
-from sklearn.metrics import confusion_matrix, accuracy_score
-cm = confusion_matrix(y_test, y_pred)
-print(cm)
-accuracy_score(y_test, y_pred)
-
-# Visualise the Test set results
-from matplotlib.colors import ListedColormap
-X_set, y_set = X_test, y_test
-X1, X2 = np.meshgrid(np.arange(start=X_set[:, 0].min() - 1, stop=X_set[:, 0].max() + 1, step=0.01),
-                     np.arange(start=X_set[:, 1].min() - 1, stop=X_set[:, 1].max() + 1, step=0.01))
-plt.contourf(X1, X2, classifier.predict(np.array([X1.ravel(), X2.ravel()]).T).reshape(X1.shape),
-             alpha=0.75, cmap=ListedColormap(('red', 'green')))
-plt.xlim(X1.min(), X1.max())
-plt.ylim(X2.min(), X2.max())
-for i, j in enumerate(np.unique(y_set)):
-    plt.scatter(X_set[y_set == j, 0], X_set[y_set == j, 1],
-                c=ListedColormap(('red', 'green'))(i), label=j)
-plt.title('SVM (Test set)')
-plt.xlabel('Age')
-plt.ylabel('Estimated Salary')
-plt.legend()
-plt.show()</code></pre>
-    </section>
-    <section class="section">
-        <h2 class="section-title">OUTPUTS:</h2>
-        <p>Confusion Matrix</p>
-        <pre><code>&#91;64 4]
-&#91; 3 29]</code></pre>
-        <p>Accuracy: 93%</p>
-    </section>
-    <section class="section">
-        <h2 class="section-title">CONCLUSION:</h2>
-        <p>Implementation of SVM for classification of linear separable data is carried out here. In the output image, there are a total of 7 incorrect predictions. There are 3 green(Yes) predictions that were predicted as Red(No) and 4 Red(No) predictions that were predicted as Green(Yes). But overall we got 93% accuracy.</p>
-    </section>
-    <section class="section">
-        <h2 class="section-title">TEXT/REFERENCE BOOKS:</h2>
+    
+        <h2>PROGRAM:</h2>
+        <pre><code>
+            # Import libraries
+            import numpy as np
+            import pandas as pd
+            from sklearn.datasets import load_iris
+            from sklearn.model_selection import train_test_split
+            import matplotlib.pyplot as plt
+    
+            # Loading dataset
+            data = load_iris()
+            X = data.data
+            y = data.target
+    
+            # Split dataset into training and test sets
+            X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=20, random_state=4)
+    
+            # Hyperparameters
+            learning_rate = 0.1
+            iterations = 5000
+            N = y_train.size
+            input_size = 4
+            hidden_size = 2
+            output_size = 3
+    
+            np.random.seed(10)
+            W1 = np.random.normal(scale=0.5, size=(input_size, hidden_size))
+            W2 = np.random.normal(scale=0.5, size=(hidden_size, output_size))
+    
+            # Helper functions
+            def sigmoid(x):
+                return 1 / (1 + np.exp(-x))
+            def mean_squared_error(y_pred, y_true):
+                # One-hot encode y_true (i.e., convert [0, 1, 2] into [[1, 0, 0], [0, 1, 0], [0, 0, 1]])
+                y_true_one_hot = np.eye(output_size)[y_true]
+                # Reshape y_true_one_hot to match y_pred shape
+                y_true_reshaped = y_true_one_hot.reshape(y_pred.shape)
+                # Compute the mean squared error between y_pred and y_true_reshaped
+                error = ((y_pred - y_true_reshaped)**2).sum() / (2*y_pred.size)
+                return error
+            def accuracy(y_pred, y_true):
+                acc = y_pred.argmax(axis=1) == y_true.argmax(axis=1)
+                return acc.mean()
+            results = pd.DataFrame(columns=["mse", "accuracy"])
+    
+            # Training loop
+            for itr in range(iterations):
+                # Feedforward propagation
+                Z1 = np.dot(X_train, W1)
+                A1 = sigmoid(Z1)
+                Z2 = np.dot(A1, W2)
+                A2 = sigmoid(Z2)
+    
+                # Calculate error
+                mse = mean_squared_error(A2, y_train)
+                acc = accuracy(np.eye(output_size)[y_train], A2)
+                new_row = pd.DataFrame({"mse": [mse], "accuracy": [acc]})
+                results = pd.concat([results, new_row], ignore_index=True)
+    
+                # Backpropagation
+                E1 = A2 - np.eye(output_size)[y_train]
+                dW1 = E1 * A2 * (1 - A2)
+                E2 = np.dot(dW1, W2.T)
+                dW2 = E2 * A1 * (1 - A1)
+    
+                # Update weights
+                W2_update = np.dot(A1.T, dW1) / N
+                W1_update = np.dot(X_train.T, dW2) / N
+                W2 = W2 - learning_rate * W2_update
+                W1 = W1 - learning_rate * W1_update
+    
+            # Visualizing the results
+            results.mse.plot(title="Mean Squared Error")
+            plt.show()
+            results.accuracy.plot(title="Accuracy")
+            plt.show()
+    
+            # Test the model
+            Z1 = np.dot(X_test, W1)
+            A1 = sigmoid(Z1)
+            Z2 = np.dot(A1, W2)
+            A2 = sigmoid(Z2)
+            test_acc = accuracy(np.eye(output_size)[y_test], A2)
+            print("Test accuracy: {}".format(test_acc))
+    </code></pre>
+    
+        <h2>CONCLUSION:</h2>
+        <p>Implementation of BPN for Iris dataset is carried out here. BPN is a method to optimize neural networks by propagating the error or loss into a backward direction. It finds loss for each node and updates its weights accordingly in order to minimize the loss using gradient descent.</p>
+    
+        <h2>TEXT/REFERENCE BOOKS:</h2>
         <ul>
             <li>“Neural Network a Comprehensive Foundation” By Simon Haykin</li>
             <li>“Introduction to Soft Computing” By Dr. S. N. Shivnandam, Mrs. S. N. Deepa</li>
@@ -129,15 +176,34 @@ plt.show()</code></pre>
             <li>“Neural Network Design” by Hagan Demuth, Beale</li>
             <li>“Neural Network for Pattern Recognition”, Christopher M. Bishop</li>
         </ul>
-    </section>
-    <section class="section">
-        <h2 class="section-title">WEB ADDRESS (URLS):</h2>
+    
+        <h2>WEB ADDRESS (URLS):</h2>
         <ul>
-            <li><a href="https://www.tutorialspoint.com/artificial_neural_network/artificial_neural_network_associate_memory.htm">https://www.tutorialspoint.com/artificial_neural_network/artificial_neural_network_associate_memory.htm</a></li>
-            <li><a href="http://cns.bu.edu/~nicks/project/html/thesis/node76.html">http://cns.bu.edu/~nicks/project/html/thesis/node76.html</a></li>
-            <li><a href="http://staff.fit.ac.cy/com.ke/files/acoe402/Neural_networks_2.pdf">http://staff.fit.ac.cy/com.ke/files/acoe402/Neural_networks_2.pdf</a></li>
+            <li><a href="https://machinelearninggeek.com/backpropagation-neural-network-using-python/">https://machinelearninggeek.com/backpropagation-neural-network-using-python/</a></li>
+            <li><a href="https://www.askpython.com/python/examples/backpropagation-in-python">https://www.askpython.com/python/examples/backpropagation-in-python</a></li>
+            <li><a href="https://www.sebastian-mantey.com/theory-blog/basics-of-deep-learning-p13-implementing-the-backpropagation-algorithm-with-numpy">https://www.sebastian-mantey.com/theory-blog/basics-of-deep-learning-p13-implementing-the-backpropagation-algorithm-with-numpy</a></li>
         </ul>
     </section>
+    
+    <br>
+    
+    
+    
+    
+    <!--load footer here-->
+    <div id="footer-container"></div>
+    
+    </body>
+    </html>
+</section>
+
+<br>
+
+
+
+
+<!--load footer here-->
+<div id="footer-container"></div>
+
 </body>
 </html>
-`

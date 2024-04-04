@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +9,7 @@
 
     <meta property="og:title" content="KJSIT AI&DS"/>
     <meta property="og:type" content="website" />
-    <meta property="og:description" content="Virtual Lab for Artificial Nueral Network." />
+    <meta property="og:description" content="official website of department of artificial intelligence and data science at K J Somaiya institute of technology" />
     <meta property="og:url" content="http://department.kjsieit.in/aids/home.php" />
     <meta property="og:image" content="https://kjsit.somaiya.edu.in/assets/kjsieit/images/Logo/kjsieit-logo.svg" />
 
@@ -22,63 +23,88 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     
 </head>
+
 <body>
-    <header>
-        <h1>Experiment 5: Multilayer Perceptron and Application</h1>
-    </header>
-    <section class="section">
-        <h2 class="section-title">AIM:</h2>
-        <p>Introduce students to Multilayer Perceptron (MLP) networks and their application.</p>
-    </section>
-    <section class="section">
-        <h2 class="section-title">LABORATORY OUTCOMES:</h2>
+    <!-- Loader -->
+<div class="loader">
+    <div class="loader-spinner"></div>
+</div>
+
+<!-- container for sub-header -->
+<div id="header-container"></div>  
+
+<div class="body-text1">
+    <div class="title">Experiment 5</div>
+</div>
+<div class="arrow">
+    <a href="#" title="Back to Top"><span class="fas fa-angle-up"></span></a>
+</div>
+
+<section class="sub-About" style="background:linear-gradient(to bottom right,#ffdbdb,#ffc6c6); width:95%; border-radius: 15px;margin: auto;">
+    <h1>Multilayer Perceptron and Application</h1>
+    
+    
+    <h2>AIM:</h2>
+    <p>Introduce students to Multilayer Perceptron (MLP) networks and their application.</p>
+
+
+    <h2>LABORATORY OUTCOMES:</h2>
+    <ul>
+        <li>Students will be able to classify inputs using MLP network.</li>
+        <li>Students will be able to observe the effect of changing the number of hidden layers and total number of iterations while keeping the momentum and learning rate constant.</li>
+    </ul>
+
+
+    <h2>THEORY:</h2>
+    <div>
+        <p>The Multi-Layer-Perceptron (MLP) was first introduced by M. Minsky and S. Papert in 1969. It is an extended form of the perceptron and incorporates one or more hidden neuron layers between its input and output layers. This extended structure enables the MLP to solve various logical operations, including the XOR problem.</p>
+    </div>
+    <div>
+        <h2>Multilayer Perceptron Network:</h2>
         <ul>
-            <li>Students will be able to classify inputs using MLP network.</li>
-            <li>Students will be able to observe the effect of changing the number of hidden layers and total number of iterations while keeping the momentum and learning rate constant.</li>
+            <li><strong>Input Layer:</strong> This layer receives the input data. The number of neurons in this layer corresponds to the number of inputs to the network.</li>
+            <li><strong>Hidden Layers:</strong> One or more hidden layers exist between the input and output layers. The purpose of these layers is to encode the input data and map it to the output. It has been demonstrated that an MLP with a single hidden layer can approximate any function connecting its inputs and outputs, provided such a function exists.</li>
+            <li><strong>Output Layer:</strong> The output layer reveals the network's outcome. The number of neurons in this layer depends on the problem the neural network aims to solve.</li>
         </ul>
-    </section>
-    <section class="section">
-        <h2 class="section-title">THEORY:</h2>
-        <div class="sub-section">
-            <p>The Multi-Layer-Perceptron (MLP) was first introduced by M. Minsky and S. Papert in 1969. It is an extended form of the perceptron and incorporates one or more hidden neuron layers between its input and output layers. This extended structure enables the MLP to solve various logical operations, including the XOR problem.</p>
-        </div>
-        <div class="sub-section">
-            <h3>Multilayer Perceptron Network:</h3>
-            <ul>
-                <li><strong>Input Layer:</strong> This layer receives the input data. The number of neurons in this layer corresponds to the number of inputs to the network.</li>
-                <li><strong>Hidden Layers:</strong> One or more hidden layers exist between the input and output layers. The purpose of these layers is to encode the input data and map it to the output. It has been demonstrated that an MLP with a single hidden layer can approximate any function connecting its inputs and outputs, provided such a function exists.</li>
-                <li><strong>Output Layer:</strong> The output layer reveals the network's outcome. The number of neurons in this layer depends on the problem the neural network aims to solve.</li>
-            </ul>
-        </div>
-        <div class="sub-section">
-            <p>Compared to the simple perceptron, the MLP differs in several aspects. Notably, weights are randomly initialized within a certain range (usually [-0.5, 0.5]). Each pattern fed into the network undergoes three passes: forward propagation, backpropagation of error, and weight update.</p>
-        </div>
-    </section>
-    <section class="section">
-        <h2 class="section-title">PROCEDURE:</h2>
-        <ol>
-            <li>Select Samples from dropdown and click on the board to plot samples.</li>
-            <li>Change values in the Parameters section.</li>
-            <li>Input the number of Hidden Layers in the designated section.</li>
-            <li>Click on Learn to see how MLP classifies the inputs you supplied.</li>
-            <li>Click on Init Button to Restart the experiment from the 1st Iteration.</li>
-            <li>Click on Clear Button to perform the experiment again.</li>
-        </ol>
-    </section>
-    <section class="section">
-        <h2 class="section-title">CONCLUSION:</h2>
-        <p>MLP simulator used for the classification of input data points. We observed the effect of changing the number of hidden layers and total number of iterations by keeping constant momentum and learning rate in the MLP network.</p>
-    </section>
-    <section class="section">
-        <h2 class="section-title">REFERENCES:</h2>
-        <ol>
-            <li>Rosenblatt, Frank. Principles of Neurodynamics: Perceptrons and the Theory of Brain Mechanisms. Spartan Books, Washington DC, 1961.</li>
-            <li>Rumelhart, David E., Geoffrey E. Hinton, and R. J. Williams. "Learning Internal Representations by Error Propagation". David E. Rumelhart, James L. McClelland, and the PDP research group. (editors), Parallel distributed processing: Explorations in the microstructure of cognition, Volume 1: Foundations. MIT Press, 1986.</li>
-            <li>Cybenko, G. 1989. Approximation by superpositions of a sigmoidal function Mathematics of Control, Signals, and Systems, 2(4), 303-314.</li>
-            <li>Haykin, Simon (1998). Neural Networks: A Comprehensive Foundation (2 ed.). Prentice Hall. ISBN 0-13-273350-1.</li>
-            <li>Wasserman, P.D.; Schwartz, T.; Page(s): 10-15; IEEE Expert, 1988, Volume 3, Issue 1. Neural networks. II. What are they and why is everybody so interested in them now?</li>
-            <li>R. Collobert and S. Bengio (2004). Links between Perceptrons, MLPs and SVMs. Proc. Int'l Conf. on Machine Learning (ICML).</li>
-        </ol>
-    </section>
+    </div>
+    <div>
+        <p>Compared to the simple perceptron, the MLP differs in several aspects. Notably, weights are randomly initialized within a certain range (usually [-0.5, 0.5]). Each pattern fed into the network undergoes three passes: forward propagation, backpropagation of error, and weight update.</p>
+    </div>
+
+
+    <h2>PROCEDURE:</h2>
+    <ol>
+        <li>Select Samples from dropdown and click on the board to plot samples.</li>
+        <li>Change values in the Parameters section.</li>
+        <li>Input the number of Hidden Layers in the designated section.</li>
+        <li>Click on Learn to see how MLP classifies the inputs you supplied.</li>
+        <li>Click on Init Button to Restart the experiment from the 1st Iteration.</li>
+        <li>Click on Clear Button to perform the experiment again.</li>
+    </ol>
+
+
+    <h2>CONCLUSION:</h2>
+    <p>MLP simulator used for the classification of input data points. We observed the effect of changing the number of hidden layers and total number of iterations by keeping constant momentum and learning rate in the MLP network.</p>
+
+
+    <h2>REFERENCES:</h2>
+    <ol>
+        <li>Rosenblatt, Frank. Principles of Neurodynamics: Perceptrons and the Theory of Brain Mechanisms. Spartan Books, Washington DC, 1961.</li>
+        <li>Rumelhart, David E., Geoffrey E. Hinton, and R. J. Williams. "Learning Internal Representations by Error Propagation". David E. Rumelhart, James L. McClelland, and the PDP research group. (editors), Parallel distributed processing: Explorations in the microstructure of cognition, Volume 1: Foundations. MIT Press, 1986.</li>
+        <li>Cybenko, G. 1989. Approximation by superpositions of a sigmoidal function Mathematics of Control, Signals, and Systems, 2(4), 303-314.</li>
+        <li>Haykin, Simon (1998). Neural Networks: A Comprehensive Foundation (2 ed.). Prentice Hall. ISBN 0-13-273350-1.</li>
+        <li>Wasserman, P.D.; Schwartz, T.; Page(s): 10-15; IEEE Expert, 1988, Volume 3, Issue 1. Neural networks. II. What are they and why is everybody so interested in them now?</li>
+        <li>R. Collobert and S. Bengio (2004). Links between Perceptrons, MLPs and SVMs. Proc. Int'l Conf. on Machine Learning (ICML).</li>
+    </ol>
+</section>
+
+<br>
+
+
+
+
+<!--load footer here-->
+<div id="footer-container"></div>
+
 </body>
 </html>

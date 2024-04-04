@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +9,7 @@
 
     <meta property="og:title" content="KJSIT AI&DS"/>
     <meta property="og:type" content="website" />
-    <meta property="og:description" content="Virtual Lab for Artificial Nueral Network." />
+    <meta property="og:description" content="official website of department of artificial intelligence and data science at K J Somaiya institute of technology" />
     <meta property="og:url" content="http://department.kjsieit.in/aids/home.php" />
     <meta property="og:image" content="https://kjsit.somaiya.edu.in/assets/kjsieit/images/Logo/kjsieit-logo.svg" />
 
@@ -20,129 +21,157 @@
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <script src="script.js" defer></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
 </head>
+
 <body>
-    <header>
-        <h1>Experiment No. 8: Bidirectional Associative Memory (BAM) Algorithm</h1>
-    </header>
-    <section class="section">
-        <h2 class="section-title">AIM:</h2>
-        <p>Implement Bidirectional Associative Memory (BAM) Algorithm for the given dataset using Python.</p>
-    </section>
-    <section class="section">
-        <h2 class="section-title">LABORATORY OUTCOMES:</h2>
-        <ul>
-            <li>Students will be able to implement Bidirectional Associative Memory Network algorithm for the given dataset.</li>
-            <li>Students will be able to compute the Weight Matrix using the BAM Algorithm and Test the BAM model for the input patterns.</li>
-        </ul>
-    </section>
-    <section class="section">
-        <h2 class="section-title">THEORY:</h2>
-        <div class="sub-section">
-            <p>The architecture of BAM network consists of two layers of neurons which are connected by directed weighted pare interconnections. The network dynamics involve two layers of interaction. The BAM network iterates by sending the signals back and forth between the two layers until all the neurons reach equilibrium. The weights associated with the network are bidirectional. Thus, BAM can respond to the inputs in either layer.</p>
-        </div>
-        <div class="sub-section">
-            <p>The weight matrix to store a set of input and target vectors can be determined by Hebb rule training algorithm. When the input vectors are binary, the weight matrix is calculated differently than when they are bipolar.</p>
-        </div>
-        <div class="sub-section">
-            <p>The testing algorithm involves initializing the weights and activations, and then iterating through the layers until convergence is reached.</p>
-        </div>
-    </section>
-    <section class="section">
-        <h2 class="section-title">PROGRAM:</h2>
-        <pre><code># Import Python Libraries 
-import numpy as np 
- 
-# Take two sets of patterns: 
-# Set A: Input Pattern 
-x1 = np.array([1, 1, 1, 1, 1, 1]).reshape(6, 1) 
-x2 = np.array([-1, -1, -1, -1, -1, -1]).reshape(6, 1) 
-x3 = np.array([1, 1, -1, -1, 1, 1]).reshape(6, 1) 
-x4 = np.array([-1, -1, 1, 1, -1, -1]).reshape(6, 1) 
- 
-# Set B: Target Pattern 
-y1 = np.array([1, 1, 1]).reshape(3, 1) 
-y2 = np.array([-1, -1, -1]).reshape(3, 1) 
-y3 = np.array([1, -1, 1]).reshape(3, 1) 
-y4 = np.array([-1, 1, -1]).reshape(3, 1) 
- 
-# Calculate weight Matrix: W 
-inputSet = np.concatenate((x1, x2, x3, x4), axis = 1) 
-targetSet = np.concatenate((y1.T, y2.T, y3.T, y4.T), axis = 0) 
-print("\nWeight matrix:") 
-weight = np.dot(inputSet, targetSet) 
-print(weight) 
- 
-# Testing Phase 
-# Test for Input Patterns: Set A 
-print("\nTesting for input patterns: Set A") 
-def testInputs(x, weight): 
-    # Multiply the input pattern with the weight matrix 
-    # (weight.T X x) 
-    y = np.dot(weight.T, x) 
-    y[y < 0] = -1 
-    y[y >= 0] = 1 
-    return np.array(y) 
- 
-print("\nOutput of input pattern 1") 
-print(testInputs(x1, weight)) 
-print("\nOutput of input pattern 2") 
-print(testInputs(x2, weight)) 
-print("\nOutput of input pattern 3") 
-print(testInputs(x3, weight)) 
-print("\nOutput of input pattern 4") 
-print(testInputs(x4, weight)) 
- 
-# Test for Target Patterns: Set B 
-print("\nTesting for target patterns: Set B") 
-def testTargets(y, weight): 
-    # Multiply the target pattern with the weight matrix 
-    # (weight X y) 
-    x = np.dot(weight, y) 
-    x[x <= 0] = -1 
-    x[x > 0] = 1 
-    return np.array(x) 
- 
-print("\nOutput of target pattern 1") 
-print(testTargets(y1, weight)) 
-print("\nOutput of target pattern 2") 
-print(testTargets(y2, weight)) 
-print("\nOutput of target pattern 3") 
-print(testTargets(y3, weight)) 
-print("\nOutput of target pattern 4") 
-print(testTargets(y4, weight))</code></pre>
-    </section>
-    <section class="section">
-        <h2 class="section-title">OUTPUTS:</h2>
-        <p>Weight matrix: 
-        [[4 0 4] 
-         [4 0 4] 
-         [0 4 0] 
-         [0 4 0] 
-         [4 0 4] 
-         [4 0 4]]</p>
-    </section>
-    <section class="section">
-        <h2 class="section-title">CONCLUSION:</h2>
-        <p>Bidirectional Associative Memories (BAM) is a system that allows associating pairs of patterns. BAMs have many applications in pattern recognition and image processing. The implementation computes the weight matrix and tests the BAM model for the input patterns.</p>
-    </section>
-    <section class="section">
-        <h2 class="section-title">TEXT/REFERENCE BOOKS:</h2>
-        <ul>
-            <li>“Neural Network a Comprehensive Foundation” By Simon Haykin</li>
-            <li>“Introduction to Soft Computing” By Dr. S. N. Shivnandam, Mrs. S. N. Deepa</li>
-            <li>“Neural Network: A classroom Approach” By Satish Kumar</li>
-            <li>“Neural Network, Fuzzy Logic and Genetic Algorithms” By Rajshekharan S, Vijayalakshmi Pai</li>
-            <li>“Neural Network Design” by Hagan Demuth, Beale“Neural Network for Pattern Recognition”, Christopher M. Bishop</li>
-        </ul>
-    </section>
-    <section class="section">
-        <h2 class="section-title">WEB ADDRESS (URLS):</h2>
-        <ul>
-            <li><a href="https://en.wikipedia.org/wiki/Bidirectional_associative_memory">https://en.wikipedia.org/wiki/Bidirectional_associative_memory</a></li>
-            <li><a href="https://www.geeksforgeeks.org/bidirectional-associative-memory-bam-implementation-fromscratch/">https://www.geeksforgeeks.org/bidirectional-associative-memory-bam-implementation-fromscratch/</a></li>
-            <li><a href="https://studyglance.in/nn/display.php?tno=8&topic=Bidirectional-Associative-Memory">https://studyglance.in/nn/display.php?tno=8&topic=Bidirectional-Associative-Memory</a></li>
-        </ul>
-    </section>
+    <!-- Loader -->
+<div class="loader">
+    <div class="loader-spinner"></div>
+</div>
+
+<!-- container for sub-header -->
+<div id="header-container"></div>  
+
+<div class="body-text1">
+    <div class="title">Experiment 8</div>
+</div>
+<div class="arrow">
+    <a href="#" title="Back to Top"><span class="fas fa-angle-up"></span></a>
+</div>
+
+<section class="sub-About" style="background:linear-gradient(to bottom right,#ffdbdb,#ffc6c6); width:95%; border-radius: 15px;margin: auto;">
+    <h1>Bidirectional Associative Memory (BAM) Algorithm</h1>
+    
+    
+    <h2>AIM:</h2>
+    <p>Implement Bidirectional Associative Memory (BAM) Algorithm for the given dataset using Python.</p>
+
+
+    <h2>LABORATORY OUTCOMES:</h2>
+    <ul>
+        <li>Students will be able to implement Bidirectional Associative Memory Network algorithm for the given dataset.</li>
+        <li>Students will be able to compute the Weight Matrix using the BAM Algorithm and Test the BAM model for the input patterns.</li>
+    </ul>
+
+
+    <h2>THEORY:</h2>
+    <div>
+        <p>The architecture of BAM network consists of two layers of neurons which are connected by directed weighted pare interconnections. The network dynamics involve two layers of interaction. The BAM network iterates by sending the signals back and forth between the two layers until all the neurons reach equilibrium. The weights associated with the network are bidirectional. Thus, BAM can respond to the inputs in either layer.</p>
+    </div>
+    <div>
+        <p>The weight matrix to store a set of input and target vectors can be determined by Hebb rule training algorithm. When the input vectors are binary, the weight matrix is calculated differently than when they are bipolar.</p>
+    </div>
+    <div>
+        <p>The testing algorithm involves initializing the weights and activations, and then iterating through the layers until convergence is reached.</p>
+    </div>
+
+
+    <h2>PROGRAM:</h2>
+    <pre><code>
+        # Import Python Libraries 
+        import numpy as np 
+        
+        # Take two sets of patterns: 
+        # Set A: Input Pattern 
+        x1 = np.array([1, 1, 1, 1, 1, 1]).reshape(6, 1) 
+        x2 = np.array([-1, -1, -1, -1, -1, -1]).reshape(6, 1) 
+        x3 = np.array([1, 1, -1, -1, 1, 1]).reshape(6, 1) 
+        x4 = np.array([-1, -1, 1, 1, -1, -1]).reshape(6, 1) 
+        
+        # Set B: Target Pattern 
+        y1 = np.array([1, 1, 1]).reshape(3, 1) 
+        y2 = np.array([-1, -1, -1]).reshape(3, 1) 
+        y3 = np.array([1, -1, 1]).reshape(3, 1) 
+        y4 = np.array([-1, 1, -1]).reshape(3, 1) 
+        
+        # Calculate weight Matrix: W 
+        inputSet = np.concatenate((x1, x2, x3, x4), axis = 1) 
+        targetSet = np.concatenate((y1.T, y2.T, y3.T, y4.T), axis = 0) 
+        print("\nWeight matrix:") 
+        weight = np.dot(inputSet, targetSet) 
+        print(weight) 
+        
+        # Testing Phase 
+        # Test for Input Patterns: Set A 
+        print("\nTesting for input patterns: Set A") 
+        def testInputs(x, weight): 
+            # Multiply the input pattern with the weight matrix 
+            # (weight.T X x) 
+            y = np.dot(weight.T, x) 
+            y[y < 0] = -1 
+            y[y >= 0] = 1 
+            return np.array(y) 
+        
+        print("\nOutput of input pattern 1") 
+        print(testInputs(x1, weight)) 
+        print("\nOutput of input pattern 2") 
+        print(testInputs(x2, weight)) 
+        print("\nOutput of input pattern 3") 
+        print(testInputs(x3, weight)) 
+        print("\nOutput of input pattern 4") 
+        print(testInputs(x4, weight)) 
+        
+        # Test for Target Patterns: Set B 
+        print("\nTesting for target patterns: Set B") 
+        def testTargets(y, weight): 
+            # Multiply the target pattern with the weight matrix 
+            # (weight X y) 
+            x = np.dot(weight, y) 
+            x[x <= 0] = -1 
+            x[x > 0] = 1 
+            return np.array(x) 
+        
+        print("\nOutput of target pattern 1") 
+        print(testTargets(y1, weight)) 
+        print("\nOutput of target pattern 2") 
+        print(testTargets(y2, weight)) 
+        print("\nOutput of target pattern 3") 
+        print(testTargets(y3, weight)) 
+        print("\nOutput of target pattern 4") 
+        print(testTargets(y4, weight))</code></pre>
+
+
+    <h2>OUTPUTS:</h2>
+    <p>Weight matrix: 
+    [[4 0 4] 
+     [4 0 4] 
+     [0 4 0] 
+     [0 4 0] 
+     [4 0 4] 
+     [4 0 4]]</p>
+
+
+    <h2>CONCLUSION:</h2>
+    <p>Bidirectional Associative Memories (BAM) is a system that allows associating pairs of patterns. BAMs have many applications in pattern recognition and image processing. The implementation computes the weight matrix and tests the BAM model for the input patterns.</p>
+
+
+    <h2>TEXT/REFERENCE BOOKS:</h2>
+    <ul>
+        <li>“Neural Network a Comprehensive Foundation” By Simon Haykin</li>
+        <li>“Introduction to Soft Computing” By Dr. S. N. Shivnandam, Mrs. S. N. Deepa</li>
+        <li>“Neural Network: A classroom Approach” By Satish Kumar</li>
+        <li>“Neural Network, Fuzzy Logic and Genetic Algorithms” By Rajshekharan S, Vijayalakshmi Pai</li>
+        <li>“Neural Network Design” by Hagan Demuth, Beale“Neural Network for Pattern Recognition”, Christopher M. Bishop</li>
+    </ul>
+
+
+    <h2>WEB ADDRESS (URLS):</h2>
+    <ul>
+        <li><a href="https://en.wikipedia.org/wiki/Bidirectional_associative_memory">https://en.wikipedia.org/wiki/Bidirectional_associative_memory</a></li>
+        <li><a href="https://www.geeksforgeeks.org/bidirectional-associative-memory-bam-implementation-fromscratch/">https://www.geeksforgeeks.org/bidirectional-associative-memory-bam-implementation-fromscratch/</a></li>
+        <li><a href="https://studyglance.in/nn/display.php?tno=8&topic=Bidirectional-Associative-Memory">https://studyglance.in/nn/display.php?tno=8&topic=Bidirectional-Associative-Memory</a></li>
+    </ul>
+
+</section>
+
+<br>
+
+
+
+
+<!--load footer here-->
+<div id="footer-container"></div>
+
 </body>
 </html>
