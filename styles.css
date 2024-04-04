@@ -10,9 +10,9 @@ html{
   scroll-behavior: smooth;
 }
 header{
-  min-height: 100vh;
+  min-height: 60vh;
   width: 100%;
-  background-image:linear-gradient(to bottom, #2e2e2e7d, #2e2e2e7d), url("images/backf.png");
+  background-image:linear-gradient(to bottom, #2e2e2e7d, #2e2e2e7d), url("images/nn2.jpg");
   /*filter: blur(20px);
   -webkit-filter: blur(8px);*/                          /* blur*/
   background-color: #242526;
@@ -165,7 +165,7 @@ nav input{
 .body-text{
   color:rgb(255, 219, 37);
   position: absolute;
-  top: 50%;
+  top: 30%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 100%;
@@ -173,12 +173,12 @@ nav input{
   padding: 0 30px;
 }
 .body-text div{
-  font-size: 65px;
+  font-size: 50px;
   font-weight: 600;
 }
 
 .body-text1{
-  color:rgb(15, 20, 121);
+  color:rgb(255, 219, 37);
   position: absolute;
   top: 25%;
   left: 50%;
@@ -1251,7 +1251,7 @@ footer .bottom-details .bottom_text{
  .sub-header{
   min-height: 45vh;
   width: 100%;
-  background-image:linear-gradient(to right, #e4e0e05c, #adadad5c), url("images/cover.jpg");
+  background-image:linear-gradient(to right, #e4e0e00e, #adadad10), url("images/nn2.jpg");
   background-color: #242526;
   background-position:center;
   background-size:cover;
